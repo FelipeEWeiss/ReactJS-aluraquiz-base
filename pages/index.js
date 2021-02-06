@@ -5,10 +5,13 @@ import { useRouter } from 'next/router';
 
 import db from '../db.json';
 import Widget from '../src/components/Widget';
+import QuizContainer from '../src/components/QuizContainer';
 import QuizBackground from '../src/components/QuizBackground';
 import Footer from '../src/components/Footer';
 import GitHubCorner from '../src/components/GitHubCorner';
 import QuizLogo from '../src/components/QuizLogo';
+import Input from '../src/components/Input';
+import Button from '../src/components/Button';
 
 const Title = styled.h1`
   font-size: 50px;
@@ -22,7 +25,7 @@ const Title = styled.h1`
   background-position: center;
 `;*/
 
-export const QuizContainer = styled.div`
+/*export const QuizContainer = styled.div`
   width: 100%;
   max-width: 350px;
   padding-top: 45px;
@@ -31,7 +34,7 @@ export const QuizContainer = styled.div`
     margin: auto;
     padding: 15px;
   }
-`;
+`;*/
 
 export default function Home() {
   const router = useRouter();
@@ -55,17 +58,15 @@ export default function Home() {
               router.push(`/quiz?name=${name}`);
               console.log('Fazendo uma submissão por meio do react');
               }}>
-              <input
-                onChange={function(infosDoEvento){
-                  // State
-                  // infosDoEvento.target.value;
-                  setName(infosDoEvento.target.value);
-                }}
+              <Input
+                name="nomeDoUsuario" 
+                onChange={(infosDoEvento) => { setName(infosDoEvento.target.value); }}
                 placeholder="Diz aí seu nome para jogar :)"
+                value={name}
               />
-              <button type="submit" disabled={name.length === 0}>
-                Jogar  {name}
-              </button>
+              <Button type="submit" disabled={name.length === 0}>
+                {`Jogar  ${name}`}
+              </Button>
             </form>
           </Widget.Content>
         </Widget>
